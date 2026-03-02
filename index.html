@@ -4,469 +4,379 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>המינהל לשירותים חברתיים חיפה - זמן חירום</title>
+    <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-/* 1. הגדרות כלליות */
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #cbd5e1;
-  display: grid;
-  gap: 40px;
-  grid-template-columns: 1fr;
-  margin: 0;
-  min-height: 100vh;
-  padding: 40px 0;
-  place-items: center;
-}
-
-.slide-container {
-  align-items: center;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  font-family: 'Assistant', sans-serif;
-  height: 720px;
-  justify-content: flex-start;
-  overflow: hidden;
-  padding: 0;
-  position: relative;
-  width: 1280px;
-}
-
-/* 2. טיפוגרפיה */
-
-.slide-container h1,
-.slide-container h2,
-.slide-container h3 {
-  color: #003366;
-  font-weight: 700;
-  margin: 0;
-}
-
-.slide-container p,
-.slide-container li,
-.slide-container .subtitle {
-  color: #475569;
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-.slide-container .slide-title {
-  font-size: 36px;
-  margin-top: 40px;
-  margin-bottom: 20px;
-  padding: 0 60px;
-  text-align: right;
-  width: 100%;
-}
-
-.content-area {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 0 60px 40px 60px;
-  width: 100%;
-}
-
-/* 3. עיצוב עמוד הבית (דשבורד) */
-
-.main-header {
-  background-image: linear-gradient(rgba(0, 51, 102, 0.75), rgba(0, 51, 102, 0.75)), url('https://images.unsplash.com/photo-1549410190-88053a47311b?q=80&w=2070&auto=format&fit=crop');
-  background-position: center;
-  background-size: cover;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  height: 250px;
-  justify-content: center;
-  padding: 0 60px;
-  position: relative;
-  text-align: center;
-  width: 100%;
-}
-
-.logo-strip {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  left: 60px;
-  position: absolute;
-  right: 60px;
-  top: 25px;
-}
-
-.logo-strip img {
-  background: white;
-  border-radius: 4px;
-  height: 60px;
-  padding: 5px;
-}
-
-.main-header h1 {
-  color: white;
-  font-size: 48px;
-  margin-bottom: 5px;
-  margin-top: 40px;
-}
-
-.main-header p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 22px;
-}
-
-.update-bar {
-  background-color: #f1f5f9;
-  border-bottom: 1px solid #e2e8f0;
-  color: #64748b;
-  font-size: 16px;
-  padding: 10px 60px;
-  text-align: center;
-  font-weight: 600;
-  width: 100%;
-}
-
-/* 4. פריסת כפתורים וכרטיסים */
-
-.dashboard-grid {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
-}
-
-.nav-card {
-  background: #f8fafc;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
-.nav-card h3 {
-  align-items: center;
-  display: flex;
-  font-size: 22px;
-  margin-bottom: 15px;
-}
-
-.nav-card h3 i {
-  color: #003366;
-  margin-left: 12px;
-}
-
-.btn-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.btn {
-  background: #003366;
-  border-radius: 6px;
-  color: white;
-  display: block;
-  font-weight: 600;
-  padding: 12px 15px;
-  text-align: center;
-  text-decoration: none;
-  width: calc(50% - 5px);
-  transition: opacity 0.2s;
-}
-
-.btn:hover {
-    opacity: 0.9;
-}
-
-.btn-gray {
-  background: #e2e8f0;
-  color: #003366;
-}
-
-.btn-red {
-    background: #dc2626;
-}
-
-/* 5. פריסת תוכן פנימית (אריחים) */
-
-.tiled-content {
-  display: flex;
-  gap: 25px;
-  width: 100%;
-}
-
-.tile {
-  background-color: #f8fafc;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 25px;
-  text-align: right;
-}
-
-.tile .icon {
-  color: #003366;
-  font-size: 40px;
-  margin-bottom: 20px;
-}
-
-.tile h3 {
-  font-size: 24px;
-  margin-bottom: 15px;
-}
-
-.table-layout table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.table-layout th, .table-layout td {
-  border-bottom: 1px solid #e2e8f0;
-  padding: 15px 20px;
-  text-align: right;
-}
-
-.table-layout th {
-  background-color: #f8fafc;
-  color: #003366;
-  font-weight: 700;
-}
-
-/* Section Title Layout */
-.section-title-layout {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-}
-
-.section-title-layout h2 {
-  font-size: 64px;
-  margin-bottom: 20px;
-}
-
-.section-title-layout hr {
-  background-color: #003366;
-  border: none;
-  height: 6px;
-  margin-bottom: 30px;
-  width: 120px;
-}
-
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: #f8fafc;
+        }
+        .navy-bg { background-color: #003366; }
+        .navy-text { color: #003366; }
+        .card-shadow { box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); }
+        
+        /* מסגרת צבעונית בולטת לקישורים כדי שיבינו שהם לחיצים */
+        .clickable-btn { 
+            @apply border-2 border-[#003366] rounded-xl transition-all hover:bg-blue-50 active:scale-[0.98] shadow-sm;
+        }
+        .phone-link { 
+            @apply bg-[#f1f5f9] text-[#003366] px-4 py-2 rounded-lg font-bold text-lg border-2 border-[#cbd5e1] inline-flex items-center gap-2 hover:border-[#003366] transition-colors; 
+        }
+        .main-action-btn { 
+            @apply block w-full text-center navy-bg text-white py-3 rounded-lg font-bold border-2 border-[#002244] hover:bg-[#1e4a7c] transition-all shadow-md; 
+        }
+        .wa-btn {
+            @apply bg-[#25D366] text-white px-4 py-2 rounded-lg font-bold text-lg border-2 border-[#1ebc57] inline-flex items-center gap-2 hover:bg-[#21b858] transition-colors;
+        }
     </style>
 </head>
-<body>
+<body class="text-[#1e293b]">
 
-<!-- Slide 1: עמוד הבית / דשבורד -->
-<div class="slide-container" id="slide1">
-    <div class="logo-strip">
-        <!-- Welfare Logo Right -->
-        <img src="LOGO-WELFARE.png" alt="משרד הרווחה" onerror="this.src='http://googleusercontent.com/image_collection/image_retrieval/2611962236105777552'">
-        <!-- City Logo Left -->
-        <img src="LOGO-CITY.png" alt="עיריית חיפה" onerror="this.src='http://googleusercontent.com/image_collection/image_retrieval/17084736686556678924'">
+    <!-- Top Header with Logos -->
+    <header class="bg-white border-b border-slate-100 px-6 py-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center h-16 md:h-20">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/17084736686556678924" alt="עיריית חיפה" class="h-full object-contain">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/2611962236105777552" alt="משרד הרווחה והביטחון החברתי" class="h-full object-contain">
+        </div>
+    </header>
+
+    <!-- Blue Hero Section -->
+    <section class="bg-[#335a82] py-12 md:py-16 text-center px-6 text-white">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight text-center">המינהל לשירותים חברתיים חיפה</h1>
+            <p class="text-lg md:text-xl font-medium opacity-90 text-center">פורטל החירום המרכזי - כל השירותים, המענים והזכויות במקום אחד</p>
+        </div>
+    </section>
+
+    <!-- Date Update Bar -->
+    <div class="bg-[#eef2f7] py-2 border-b border-[#cbd5e1] text-center text-[#475569] text-sm md:text-base font-bold">
+        תאריך עדכון: 2/3/26 | שירות לתושב בזמן חירום
     </div>
-    <div class="main-header">
-        <h1>המינהל לשירותים חברתיים חיפה</h1>
-        <p>ריכוז שירותים חיוניים ומידע לתושבים בזמן חירום</p>
-    </div>
-    <div class="update-bar">
-        תאריך עדכון: 2/3/26 | מלחמת "שאגת הארי"
-    </div>
-    <div class="content-area" style="padding-top: 30px;">
-        <div class="dashboard-grid">
-            <!-- בטיחות -->
-            <div class="nav-card">
-                <h3><i class="fa-solid fa-shield-halved"></i> בטיחות והנחיות</h3>
-                <div class="btn-container">
-                    <a href="https://www.haifa.muni.il/operation/security-and-emergency/safe-place/" target="_blank" class="btn">מרחבים מוגנים</a>
-                    <a href="https://www.haifa-during-emergency.co.il/" target="_blank" class="btn">אתר חירום עירוני</a>
-                    <a href="https://t.me/haifamuni" target="_blank" class="btn btn-gray">טלגרם עיריית חיפה</a>
+
+    <main class="max-w-6xl mx-auto px-4 md:px-6 pt-10 pb-20">
+        
+        <!-- Top Action Buttons -->
+        <div class="space-y-4 mb-10 max-w-4xl mx-auto">
+            <a href="https://www.haifa-during-emergency.co.il/" target="_blank" class="flex items-center justify-center gap-3 py-4 px-6 bg-[#eff6ff] text-[#1d4ed8] border-2 border-[#1d4ed8] rounded-xl font-bold text-lg hover:bg-[#dbeafe] transition-colors shadow-sm">
+                <i class="fa-solid fa-globe"></i>
+                <span>מעבר לאתר חירום עירוני - עיריית חיפה</span>
+            </a>
+            <a href="https://www.haifa.muni.il/operation/security-and-emergency/safe-place/" target="_blank" class="flex items-center justify-center gap-3 py-4 px-6 bg-[#eff6ff] text-[#1d4ed8] border-2 border-[#1d4ed8] rounded-xl font-bold text-lg hover:bg-[#dbeafe] transition-colors shadow-sm text-center leading-tight">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>איתור מרחבים מוגנים בחיפה</span>
+            </a>
+        </div>
+
+        <!-- Initial Contact Cards -->
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+            <div class="bg-white p-7 rounded-xl border border-slate-200 border-r-[6px] border-r-[#003366] card-shadow flex flex-col justify-between">
+                <div class="text-right">
+                    <h3 class="text-xl font-extrabold navy-text mb-2">המינהל לשירותים חברתיים</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">סיוע לאוכלוסיות רווחה, קשישים ומשפחות בסיכון.</p>
+                </div>
+                <div class="flex justify-start">
+                    <a href="tel:048356571" class="phone-link"><i class="fa-solid fa-phone"></i> 04-8356571</a>
                 </div>
             </div>
-            <!-- חוסן נפשי -->
-            <div class="nav-card">
-                <h3><i class="fa-solid fa-hand-holding-heart"></i> תמיכה נפשית וחוסן</h3>
-                <div class="btn-container">
-                    <a href="https://haifa-hosen.base44.app/" target="_blank" class="btn">מרכז חוסן דיגיטלי</a>
-                    <a href="tel:1201" class="btn">ער"ן: 1201</a>
-                    <a href="tel:048375649" class="btn btn-gray">מרכז "עמך" חיפה</a>
+            <div class="bg-white p-7 rounded-xl border border-slate-200 border-r-[6px] border-r-[#003366] card-shadow flex flex-col justify-between">
+                <div class="text-right">
+                    <h3 class="text-xl font-extrabold navy-text mb-2">מוקד עירוני חיפה (106)</h3>
+                    <p class="text-slate-600 mb-4 leading-relaxed">דיווח על מפגעים וסיוע ראשוני.</p>
+                    <div class="bg-[#eff6ff] text-[#1e40af] px-4 py-2 rounded-lg font-bold text-sm mb-6 inline-block text-right">פניות למוקד מגיעות לטיפול המינהל לשירותים חברתיים</div>
                 </div>
-            </div>
-            <!-- קהילה ורווחה -->
-            <div class="nav-card">
-                <h3><i class="fa-solid fa-users"></i> מענה וסיוע קהילתי</h3>
-                <div class="btn-container">
-                    <a href="tel:106" class="btn">מוקד עירוני: 106</a>
-                    <a href="tel:048356571" class="btn">מינהל שירותים חברתיים</a>
-                    <a href="tel:0548665309" class="btn btn-gray">מרכז הגישור</a>
-                </div>
-            </div>
-            <!-- זכויות ותעסוקה -->
-            <div class="nav-card">
-                <h3><i class="fa-solid fa-scale-balanced"></i> זכויות ותעסוקה</h3>
-                <div class="btn-container">
-                    <a href="https://www.kolzchut.org.il/he/%D7%A9%D7%90%D7%9C%D7%95%D7%AA_%D7%95%D7%AA%D7%A9%D7%95%D7%91%D7%95%D7%AA_%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D_%D7%95%D7%9C%D7%9E%D7%A2%D7%A1%D7%99%D7%A7%D7%99%D7%9D_%D7%91%D7%AA%D7%A7%D7%95%D7%A4%D7%AA_%D7%94%D7%9E%D7%9C%D7%97%D7%9E%D7%94_%D7%9E%D7%95%D7%9C_%D7%90%D7%99%D7%A8%D7%90%D7%9F" target="_blank" class="btn btn-red" style="width: 100%;">שאלות ותשובות לעובדים (כל זכות)</a>
-                    <a href="tel:*3080" class="btn">מוקד משרד העבודה</a>
-                    <a href="http://www.btl.gov.il/About/contact_us/Pages/default.aspx" target="_blank" class="btn btn-gray">ביטוח לאומי</a>
+                <div class="flex justify-start">
+                    <a href="tel:106" class="phone-link"><i class="fa-solid fa-phone"></i> 106</a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- Slide 2: כותרת מדור - בטיחות -->
-<div class="slide-container" id="slide2">
-    <div class="section-title-layout">
-        <hr>
-        <h2>בטיחות והנחיות</h2>
-        <p>מידע מציל חיים והנחיות התגוננות רשמיות לתושבי העיר חיפה</p>
-    </div>
-</div>
+        <!-- Official Channels -->
+        <section class="mb-14 text-center">
+            <h2 class="text-2xl font-black text-red-600 mb-8 uppercase tracking-wide">ערוצים רשמיים לתקשורת</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                <a href="https://did.li/Haifagr7" target="_blank" class="bg-white border-2 border-emerald-500 text-emerald-700 py-3 rounded-xl font-bold text-lg hover:bg-emerald-50">קבוצה 7</a>
+                <a href="https://did.li/Haifagr8" target="_blank" class="bg-white border-2 border-emerald-500 text-emerald-700 py-3 rounded-xl font-bold text-lg hover:bg-emerald-50">קבוצה 8</a>
+                <a href="https://did.li/Haifagr9" target="_blank" class="bg-white border-2 border-emerald-500 text-emerald-700 py-3 rounded-xl font-bold text-lg hover:bg-emerald-50">קבוצה 9</a>
+                <a href="https://did.li/Haifagr10" target="_blank" class="bg-white border-2 border-emerald-500 text-emerald-700 py-3 rounded-xl font-bold text-lg hover:bg-emerald-50">קבוצה 10</a>
+            </div>
+            <div class="grid md:grid-cols-3 gap-3 mb-4">
+                <a href="https://t.me/haifamuni" target="_blank" class="bg-[#0088cc] border-2 border-[#0077b3] text-white py-4 rounded-xl flex items-center justify-center gap-2 font-bold text-lg"><i class="fa-brands fa-telegram"></i> טלגרם עיריית חיפה</a>
+                <a href="https://t.me/haifarumuni" target="_blank" class="bg-[#475569] border-2 border-[#334155] text-white py-4 rounded-xl flex items-center justify-center gap-2 font-bold text-lg"><i class="fa-brands fa-telegram"></i> טלגרם ברוסית</a>
+                <a href="https://bit.ly/4awJyiZ" target="_blank" class="bg-[#25D366] border-2 border-[#1ebc57] text-white py-4 rounded-xl flex items-center justify-center gap-2 font-bold text-lg"><i class="fa-brands fa-whatsapp"></i> וואטצאפ ברוסית</a>
+            </div>
+            <a href="https://www.haifa.muni.il/article/iran2/" target="_blank" class="block w-full navy-bg border-2 border-[#002244] text-white py-4 rounded-xl font-bold text-xl mt-4 shadow-md text-center">עמוד עדכונים שוטפים (אתר העירייה)</a>
+        </section>
 
-<!-- Slide 3: פירוט בטיחות -->
-<div class="slide-container" id="slide3">
-    <h2 class="slide-title">מוקדי בטיחות ועדכונים</h2>
-    <div class="content-area">
-        <div class="tiled-content">
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-map-location-dot"></i></div>
-                <h3>מרחבים מוגנים</h3>
-                <p>מפה אינטראקטיבית הכוללת את כל המקלטים הציבוריים והמרחבים המוגנים בחיפה.</p>
-                <a href="https://www.haifa.muni.il/operation/security-and-emergency/safe-place/" target="_blank" class="btn" style="width: 100%; margin-top: auto;">לאיתור מרחב מוגן</a>
+        <!-- Information Grid -->
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <!-- Elderly -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 card-shadow flex flex-col">
+                <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                    <i class="fa-solid fa-person-cane text-[#003366] text-2xl"></i>
+                    <h3 class="text-2xl font-bold navy-text">אזרחים ותיקים</h3>
+                </div>
+                <div class="space-y-8 flex-1 text-right">
+                    <div>
+                        <span class="block font-bold navy-text text-lg leading-tight">מוקד סיוע קהילתי לאזרחים ותיקים</span>
+                        <p class="text-slate-600 text-[15px] mb-3 leading-relaxed">מענה ייעודי בשפות עברית וברוסית.</p>
+                        <div class="flex gap-2 justify-start">
+                            <a href="tel:*3284" class="phone-link">3284*</a>
+                            <a href="tel:0772231220" class="phone-link">077-2231220</a>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="block font-bold navy-text text-lg leading-tight">יד עזר לחבר (חיפה)</span>
+                        <p class="text-slate-600 text-[15px] mb-3 leading-relaxed">סיוע לניצולי שואה וקשישים, ארוחות חמות וסיוע בבית.</p>
+                        <a href="tel:048666924" class="phone-link">04-8666924</a>
+                    </div>
+                    <div>
+                        <span class="block font-bold navy-text text-lg mb-2 leading-tight">יוניפר (Uniper) - מועדון בריאות חברתי</span>
+                        <p class="text-slate-600 text-[15px] mb-3 leading-relaxed">הצטרפות לקהילה דיגיטלית מלאה בתוכן ופעילות ללא עלות.</p>
+                        <a href="https://uniper.co.il/contactform_freereg/" target="_blank" class="main-action-btn">להצטרפות חינם מהבית</a>
+                    </div>
+                    <div>
+                        <span class="block font-bold navy-text text-lg mb-2 leading-tight">עמותת "חיבורים 20-80"</span>
+                        <p class="text-slate-600 text-[15px] mb-3 leading-relaxed">סיוע ארצי בשינוע מזון, תרופות והפגת בדידות.</p>
+                        <a href="https://linktr.ee/20_80_2026" target="_blank" class="main-action-btn">לינק להצטרפות וסיוע</a>
+                    </div>
+                </div>
             </div>
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-tower-broadcast"></i></div>
-                <h3>פיקוד העורף</h3>
-                <p>הנחיות התגוננות מעודכנות בזמן אמת לפי אזור "חיפה" (זמן התרעה דקה אחת).</p>
-                <a href="https://www.oref.org.il/" target="_blank" class="btn" style="width: 100%; margin-top: auto;">אתר פיקוד העורף</a>
-            </div>
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-circle-exclamation"></i></div>
-                <h3>עדכוני עירייה</h3>
-                <p>ערוצי העדכון הרשמיים בטלגרם ובווטסאפ לגבי אירועי חירום ומצב לימודים.</p>
-                <a href="https://t.me/haifamuni" target="_blank" class="btn" style="width: 100%; margin-top: auto;">לערוץ הטלגרם</a>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Slide 4: תמיכה נפשית וחוסן -->
-<div class="slide-container" id="slide4">
-    <h2 class="slide-title">חוסן ותמיכה נפשית</h2>
-    <div class="content-area">
-        <div class="tiled-content">
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-heart-circle-check"></i></div>
-                <h3>מרכז חוסן דיגיטלי</h3>
-                <p>מרכז החוסן הדיגיטלי להורים וילדים - כלים ומענים לחיזוק החוסן המשפחתי.</p>
-                <a href="https://haifa-hosen.base44.app/" target="_blank" class="btn" style="width: 100%; margin-top: auto;">כניסה למרחב</a>
+            <!-- Resilience -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 card-shadow flex flex-col">
+                <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                    <i class="fa-solid fa-heart-pulse text-[#003366] text-2xl"></i>
+                    <h3 class="text-2xl font-bold navy-text">חוסן ותמיכה נפשית</h3>
+                </div>
+                <div class="space-y-8 flex-1 text-right">
+                    <div>
+                        <span class="block font-bold navy-text text-lg leading-tight">מרכז החוסן - אוניברסיטת חיפה</span>
+                        <p class="text-slate-600 text-[15px] mb-3 leading-relaxed">מענה מקצועי לטיפול בחרדה ותמיכה רגשית (9:00-19:00).</p>
+                        <a href="tel:0528510004" class="phone-link">052-8510004</a>
+                    </div>
+                    <div>
+                        <span class="block font-bold navy-text text-lg mb-2 leading-tight">מרכז החוסן הדיגיטלי להורים וילדים</span>
+                        <p class="text-slate-600 text-[15px] mb-3 leading-relaxed">כלים דיגיטליים ומענים עירוניים לחיזוק החוסן המשפחתי.</p>
+                        <a href="https://haifa-hosen.base44.app/" target="_blank" class="block w-full py-4 px-6 bg-[#eff6ff] text-[#1d4ed8] border-2 border-[#1d4ed8] rounded-xl font-bold text-lg hover:bg-[#e0f2fe] text-center leading-tight">
+                            <i class="fa-solid fa-heart-circle-check ml-2"></i> מרכז החוסן הדיגיטלי להורים וילדים
+                        </a>
+                    </div>
+                    <div>
+                        <span class="block font-bold navy-text text-lg leading-tight">מרכז "עמך" חיפה</span>
+                        <p class="text-slate-600 text-[15px] mb-3 leading-relaxed">תמיכה נפשית וטיפולים למשרתים ובני משפחה (מתמחים בטראומה ואובדן). כתובת: שד' בן גוריון 6 (סיטי סנטר), קומה 4.</p>
+                        <a href="tel:048375649" class="phone-link">04-8375649</a>
+                    </div>
+                    <div>
+                        <span class="block font-bold navy-text text-lg mb-3">מוקדי סיוע נפשי (ער"ן / נט"ל)</span>
+                        <div class="flex gap-2 justify-start mb-4">
+                            <a href="tel:1201" class="phone-link">ער"ן: 1201</a>
+                            <a href="tel:*3362" class="phone-link">נט"ל: 3362*</a>
+                        </div>
+                        <div class="bg-[#f0f7ff] border-r-4 border-[#003366] p-4 rounded-l-lg text-blue-900 text-sm font-semibold leading-relaxed">
+                            <b class="block mb-1">קווי סיוע ער"ן (לחצו לחיוג):</b>
+                            <a href="tel:1201" class="hover:underline">ערבית (שלוחה 7)</a> | 
+                            <a href="tel:*3201" class="hover:underline">עולים (*3201)</a> <br>
+                            <a href="tel:*2201" class="hover:underline">חיילים (*2201)</a> | 
+                            <a href="tel:0768844429" class="hover:underline">חרדים (076-8844429)</a> <br>
+                            <a href="tel:1800241201" class="hover:underline">ניצולי שואה (1-800-241201)</a>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="block font-bold navy-text text-lg mb-2 leading-tight">ערכת הקואליציה הישראלית לטראומה</span>
+                        <a href="https://link.VIVID.me/1min" target="_blank" class="main-action-btn">תרגולים לרגעים מאתגרים</a>
+                    </div>
+                </div>
             </div>
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-kit-medical"></i></div>
-                <h3>מרכז "עמך" חיפה</h3>
-                <p>תמיכה נפשית למשרתים ובני משפחה. מתמחים בטראומה ואובדן.</p>
-                <p style="font-size: 14px;">בן גוריון 6, קומה 4.</p>
-                <a href="tel:048375649" class="btn" style="width: 100%; margin-top: auto;">חיוג: 04-8375649</a>
-            </div>
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-headset"></i></div>
-                <h3>קווי סיוע 24/7</h3>
-                <p>ער"ן (1201) ונט"ל (3362*) זמינים למענה אנונימי ותמיכה בנפגעי חרדה.</p>
-                <a href="tel:1201" class="btn" style="width: 100%; margin-top: auto;">חיוג לער"ן</a>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Slide 5: זכויות ותעסוקה -->
-<div class="slide-container" id="slide5">
-    <h2 class="slide-title">זכויות, תעסוקה ומילואים</h2>
-    <div class="content-area">
-        <div class="table-layout">
-            <table>
-                <thead>
-                    <tr>
-                        <th>שירות / ארגון</th>
-                        <th>פירוט המענה</th>
-                        <th>חיוג / קישור</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>מרכז הזדמנות</td>
-                        <td>ייעוץ אישי, ליווי וסדנאות תעסוקה למילואימניקים ולנשותיהם</td>
-                        <td><a href="https://haifaforms.haifa.muni.il/?page_id=149662" target="_blank" style="color: #003366; font-weight: 700;">פנייה ליועץ</a></td>
-                    </tr>
-                    <tr>
-                        <td>משרד העבודה</td>
-                        <td>מוקד זכויות עובדים בחירום (א'-ה' 08:30-16:00)</td>
-                        <td><a href="tel:*3080" style="color: #003366; font-weight: 700;">3080*</a></td>
-                    </tr>
-                    <tr>
-                        <td>ביטוח לאומי</td>
-                        <td>מענקי מלחמה, תגמולים וערוצי שירות מקוונים</td>
-                        <td><a href="tel:*6050" style="color: #003366; font-weight: 700;">6050*</a></td>
-                    </tr>
-                    <tr>
-                        <td>עמותת פעמונים</td>
-                        <td>סיוע וליווי כלכלי למשפחות משרתי המילואים</td>
-                        <td><a href="https://www.facebook.com/share/p/18SvG198eG/" target="_blank" style="color: #003366; font-weight: 700;">למידע</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+            <!-- Employment & Rights -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 card-shadow flex flex-col">
+                <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                    <i class="fa-solid fa-briefcase text-[#003366] text-2xl"></i>
+                    <h3 class="text-2xl font-bold navy-text">תעסוקה וזכויות</h3>
+                </div>
+                <div class="space-y-8 flex-1 text-right">
+                    <div>
+                        <span class="block font-bold navy-text text-lg mb-2 leading-tight">מרכז הזדמנות לתעסוקה חיפה</span>
+                        <p class="text-slate-600 text-[15px] mb-3 leading-relaxed">המרכז העירוני לקידום תעסוקה. מעניק ייעוץ אישי, ליווי, סדנאות ותוכניות תעסוקה מגוונות.</p>
+                        <a href="https://haifaforms.haifa.muni.il/?page_id=149662" target="_blank" class="main-action-btn">פנייה ליועץ תעסוקה</a>
+                    </div>
+                    <div>
+                        <span class="block font-bold navy-text text-lg leading-tight">מוקד זכויות עובדים - משרד העבודה</span>
+                        <p class="text-slate-600 text-[15px] mb-3 leading-relaxed">מענה אנושי, מידע חשוב והכוונה לשכירים, עצמאיים ומעסיקים במצבי חירום.</p>
+                        <a href="tel:*3080" class="phone-link">3080*</a>
+                        <p class="text-[#003366] font-bold text-sm mt-3">המוקד זמין בימים א'-ה', בין השעות 08:30-16:00</p>
+                    </div>
 
-<!-- Slide 6: מוקדי חירום מהירים -->
-<div class="slide-container" id="slide6">
-    <h2 class="slide-title">מוקדי חירום - חיוג מהיר</h2>
-    <div class="content-area">
-        <div class="tiled-content" style="flex-wrap: wrap;">
-            <div class="tile" style="flex: 0 0 23%; min-width: 200px;">
-                <h3 style="font-size: 40px;"><a href="tel:100" style="text-decoration: none; color: inherit;">100</a></h3>
-                <p>משטרה</p>
+                    <div>
+                        <span class="block font-bold navy-text text-lg mb-2 leading-tight">ביטוח לאומי</span>
+                        <p class="text-slate-600 text-sm mb-3 leading-relaxed">צ'אט, פנייה מקוונת, מוקד טלפוני וערוצי שירות חוסן.</p>
+                        <a href="tel:*6050" class="phone-link mb-3 inline-block">6050*</a>
+                        <a href="http://www.btl.gov.il/About/contact_us/Pages/default.aspx" target="_blank" class="main-action-btn bg-slate-100 !text-[#003366] border-2 border-[#003366]">קישור ליצירת קשר עם ביטוח לאומי</a>
+                    </div>
+
+                    <a href="https://www.kolzchut.org.il" target="_blank" class="block w-full bg-[#fef2f2] text-[#991b1b] border-2 border-[#fee2e2] py-3 rounded-lg font-bold text-center hover:bg-[#fee2e2] transition-colors"><i class="fa-solid fa-circle-question ml-2"></i> שאלות ותשובות לעובדים ומעסיקים (כל זכות)</a>
+                    
+                    <div>
+                        <span class="block font-bold navy-text text-lg mb-2 text-center leading-tight">מוקד החירום של ההסתדרות</span>
+                        <div class="flex gap-2 justify-center">
+                            <a href="tel:*2383" class="phone-link">2383*</a>
+                            <a href="https://wa.me/972548678673" target="_blank" class="wa-btn"><i class="fa-brands fa-whatsapp"></i> וואטסאפ</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="tile" style="flex: 0 0 23%; min-width: 200px;">
-                <h3 style="font-size: 40px;"><a href="tel:101" style="text-decoration: none; color: inherit;">101</a></h3>
-                <p>מד"א</p>
+
+            <!-- Reserves -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 card-shadow flex flex-col">
+                <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                    <i class="fa-solid fa-shield-halved text-[#003366] text-2xl"></i>
+                    <h3 class="text-2xl font-bold navy-text">מילואים</h3>
+                </div>
+                <div class="space-y-8 flex-1 text-right">
+                    <div>
+                        <span class="block font-bold navy-text text-lg mb-2 leading-tight">סיוע בתעסוקה למילואימניקים ונשות המילואים</span>
+                        <p class="text-slate-600 text-[15px] mb-3 leading-relaxed">דרך מרכז הזדמנות לתעסוקה חיפה.</p>
+                        <a href="https://haifaforms.haifa.muni.il/?page_id=149662" target="_blank" class="main-action-btn">פנייה לליווי תעסוקתי</a>
+                    </div>
+                    <div>
+                        <span class="block font-bold navy-text text-lg mb-2 leading-tight">זכויות משרתי מילואים ובני משפחה</span>
+                        <a href="https://www.kolzchut.org.il/he/מילואים" target="_blank" class="main-action-btn bg-slate-100 !text-[#003366] border-2 border-[#003366]">פורטל זכויות מילואים (כל זכות)</a>
+                    </div>
+                    <div>
+                        <span class="block font-bold navy-text text-lg mb-2 leading-tight">עמותת "גב ללוחם"</span>
+                        <a href="https://share.google/Mb33tLc2QEFNLhsze" target="_blank" class="main-action-btn">סיוע ומעטפת ללוחמים</a>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-right">
+                            <span class="block font-bold text-sm mb-1">עמותת פעמונים</span>
+                            <a href="https://www.facebook.com/share/p/18SvG198eG/" target="_blank" class="block text-center border-2 border-[#003366] py-2 rounded-lg font-bold navy-text text-sm hover:bg-slate-50 transition-colors">סיוע כלכלי</a>
+                        </div>
+                        <div class="text-right">
+                            <span class="block font-bold text-sm mb-1">סיוע "העוגן"</span>
+                            <a href="https://forms.fillout.com/t/3MNjc8LWPdus" target="_blank" class="block text-center border-2 border-[#003366] py-2 rounded-lg font-bold navy-text text-sm hover:bg-slate-50 transition-colors">מילוי טופס</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="tile" style="flex: 0 0 23%; min-width: 200px;">
-                <h3 style="font-size: 40px;"><a href="tel:102" style="text-decoration: none; color: inherit;">102</a></h3>
-                <p>מכבי אש</p>
+
+            <!-- People with Disabilities -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 card-shadow flex flex-col md:col-span-2">
+                <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                    <i class="fa-solid fa-wheelchair text-[#003366] text-2xl"></i>
+                    <h3 class="text-2xl font-bold navy-text text-right">אנשים עם מוגבלויות ובני משפחותיהם</h3>
+                </div>
+                <div class="space-y-6 flex-1 text-right">
+                    <div>
+                        <span class="block font-bold navy-text text-lg leading-tight">מענה רגשי ראשוני - מינהל מוגבלויות במשרד הרווחה</span>
+                        <p class="text-slate-600 text-[15px] mt-1 mb-4 leading-relaxed">קו ייעודי למענה רגשי ותמיכה לאנשים עם מוגבלות וקרוביהם.</p>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                            <a href="tel:0533089786" class="phone-link text-xl px-6 py-3 border-[#003366]"><i class="fa-solid fa-phone"></i> 053-3089786</a>
+                            <span class="text-sm font-extrabold text-[#003366] bg-blue-50 px-3 py-1 rounded-md">המוקד פתוח בימים א'-ה' בין השעות 8:00-20:00</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="tile" style="flex: 0 0 23%; min-width: 200px;">
-                <h3 style="font-size: 40px;"><a href="tel:106" style="text-decoration: none; color: inherit;">106</a></h3>
-                <p>מוקד עירוני</p>
+
+            <!-- Technical & Community Services -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 card-shadow flex flex-col">
+                <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                    <i class="fa-solid fa-screwdriver-wrench text-[#003366] text-2xl"></i>
+                    <h3 class="text-2xl font-bold navy-text">סיוע טכני ולוגיסטי</h3>
+                </div>
+                <div class="space-y-6 flex-1 text-right">
+                    <span class="block font-bold navy-text text-lg">ארגון "ידידים" - סיוע חינם</span>
+                    <div class="bg-[#f0f7ff] border-r-4 border-[#003366] p-4 rounded-l-lg text-blue-900 text-sm font-semibold leading-relaxed">
+                        <b>סיוע בממ"ד:</b> פתיחה ותיקון דלתות/חלונות ממ"ד תקועים.
+                    </div>
+                    <a href="tel:1230" class="phone-link border-[#003366]">מוקד ידידים: 1230</a>
+                </div>
             </div>
-            <div class="tile" style="flex: 0 0 23%; min-width: 200px;">
-                <h3 style="font-size: 40px;"><a href="tel:103" style="text-decoration: none; color: inherit;">103</a></h3>
-                <p>חשמל</p>
+
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 card-shadow flex flex-col">
+                <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                    <i class="fa-solid fa-handshake text-[#003366] text-2xl"></i>
+                    <h3 class="text-2xl font-bold navy-text">גישור ודיאלוג קהילתי</h3>
+                </div>
+                <div class="space-y-6 flex-1 text-right">
+                    <span class="block font-bold navy-text text-lg leading-tight">מרכז חיפה לגישור ודיאלוג - עיריית חיפה</span>
+                    <p class="text-slate-600 text-[15px] leading-relaxed">מסייע בפתרון מחלוקות וסכסוכים בין תושבים בדרכי נועם, במיוחד במצבי לחץ וחירום.</p>
+                    <div class="flex flex-wrap gap-2 justify-start">
+                        <a href="tel:0548665309" class="phone-link">054-8665309</a>
+                        <a href="tel:0773181974" class="phone-link">077-3181974</a>
+                    </div>
+                </div>
             </div>
-            <div class="tile" style="flex: 0 0 23%; min-width: 200px;">
-                <h3 style="font-size: 40px;"><a href="tel:104" style="text-decoration: none; color: inherit;">104</a></h3>
-                <p>פיקוד העורף</p>
-            </div>
+
         </div>
-        <div style="margin-top: 40px; text-align: center; color: #003366; font-weight: 700; font-size: 24px;">
-            המינהל לשירותים חברתיים חיפה: <a href="tel:048356571" style="color: inherit;">04-8356571</a>
+
+        <!-- Health Section -->
+        <section class="mt-16">
+            <h2 class="text-2xl font-black navy-text mb-8 border-b-2 border-slate-300 pb-2 text-right">בריאות</h2>
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 card-shadow text-center">
+                <span class="block font-bold text-xl navy-text mb-6">בתי מרקחת חירום בחיפה</span>
+                <a href="https://www2.haifa.muni.il/pharmacy/pharmhaifa.aspx" target="_blank" class="inline-flex items-center gap-3 border-2 border-emerald-500 bg-emerald-50 text-emerald-700 py-4 px-10 rounded-2xl font-black text-2xl hover:bg-emerald-100 transition-all shadow-sm">
+                    <i class="fa-solid fa-prescription-bottle-medical"></i> לרשימת בתי מרקחת תורנים (לחצו כאן)
+                </a>
+                
+                <div class="grid grid-cols-2 gap-4 mt-10">
+                    <div class="bg-slate-50 p-6 rounded-xl border-2 border-slate-200 hover:border-[#003366] transition-colors">
+                        <span class="block font-bold text-slate-500 mb-1">נ.ט.ל.י (רפואה דחופה)</span>
+                        <a href="tel:1800800666" class="block navy-text font-black text-2xl">1-800-800666</a>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-xl border-2 border-slate-200 hover:border-[#003366] transition-colors">
+                        <span class="block font-bold text-slate-500 mb-1">שח"ל (ניידת טיפול נמרץ)</span>
+                        <a href="tel:035625555" class="block navy-text font-black text-2xl">03-5625555</a>
+                    </div>
+                </div>
+
+                <div class="mt-12 flex justify-center">
+                    <a href="https://carepedia.org/war-emergency" target="_blank" class="inline-flex items-center gap-3 navy-bg border-2 border-white text-white px-12 py-5 rounded-full font-black text-2xl shadow-xl hover:scale-105 transition-all text-center">
+                        <span>Carepedia - מאגר חירום לאומי מלא</span>
+                        <i class="fa-solid fa-circle-info"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Grid -->
+    <footer class="bg-[#1e293b] text-white pt-16 pb-20 border-t-8 border-[#003366]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <a href="tel:100" class="bg-[#334155]/30 border-2 border-[#334155] p-6 rounded-xl text-center hover:border-white transition-all group">
+                    <span class="block text-slate-400 font-bold text-sm mb-1 uppercase">משטרה</span>
+                    <span class="block text-4xl font-black group-hover:scale-110 transition-transform">100</span>
+                </a>
+                <a href="tel:101" class="bg-[#334155]/30 border-2 border-[#334155] p-6 rounded-xl text-center hover:border-white transition-all group">
+                    <span class="block text-slate-400 font-bold text-sm mb-1 uppercase">מד"א</span>
+                    <span class="block text-4xl font-black group-hover:scale-110 transition-transform">101</span>
+                </a>
+                <a href="tel:102" class="bg-[#334155]/30 border-2 border-[#334155] p-6 rounded-xl text-center hover:border-white transition-all group">
+                    <span class="block text-slate-400 font-bold text-sm mb-1 uppercase">כיבוי</span>
+                    <span class="block text-4xl font-black group-hover:scale-110 transition-transform">102</span>
+                </a>
+                <a href="tel:103" class="bg-[#334155]/30 border-2 border-[#334155] p-6 rounded-xl text-center hover:border-white transition-all group">
+                    <span class="block text-slate-400 font-bold text-sm mb-1 uppercase">חשמל</span>
+                    <span class="block text-4xl font-black group-hover:scale-110 transition-transform">103</span>
+                </a>
+                <a href="tel:106" class="bg-[#334155]/30 border-2 border-[#334155] p-6 rounded-xl text-center hover:border-white transition-all group">
+                    <span class="block text-slate-400 font-bold text-sm mb-1 uppercase">מוקד חיפה</span>
+                    <span class="block text-4xl font-black group-hover:scale-110 transition-transform">106</span>
+                </a>
+                <a href="tel:104" class="bg-[#334155]/30 border-2 border-[#334155] p-6 rounded-xl text-center hover:border-white transition-all group">
+                    <span class="block text-slate-400 font-bold text-sm mb-1 uppercase">פיקוד העורף</span>
+                    <span class="block text-4xl font-black group-hover:scale-110 transition-transform">104</span>
+                </a>
+            </div>
+            <p class="mt-16 text-center text-slate-400 font-medium text-sm">הנחיות כוחות הביטחון בשטח הן הקובעות תמיד. שמרו על עצמכם.</p>
         </div>
-    </div>
-</div>
+    </footer>
 
 </body>
 </html>
